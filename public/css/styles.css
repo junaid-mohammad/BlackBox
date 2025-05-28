@@ -1,16 +1,87 @@
-
+/* Base background color */
 body {
   background-color: #E8ECEF;
+
+  /* Required for sticky footer */
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Centered jumbotron content */
 .centered {
-    padding-top: 200px;
-    text-align: center;
+  padding-top: 200px;
+  text-align: center;
 }
 
+/* Style for secrets */
 .secret-text {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #fff;
   background-color: #000;
+}
+
+/* Sticky footer styling */
+footer {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+footer nav a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+footer nav a:hover {
+  text-decoration: underline;
+}
+
+/* Improved Responsive Adjustments for Mobile */
+@media (max-width: 768px) {
+  .centered {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 80vh;
+  }
+
+  .secret-text {
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  h1.display-3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p.lead {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-lg {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  footer {
+    font-size: 1rem;
+  }
+
+  footer nav {
+    margin-top: 0.5rem;
+  }
+
+  /* Keep links inline (no stacking) */
+  footer nav a {
+    display: inline;
+    margin: 0 8px;
+  }
 }
