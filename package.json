@@ -1,27 +1,49 @@
 {
-  "name": "secrets",
+  "name": "blackbox-sql",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "A full-stack secrets vault rebuilt with PostgreSQL, Node.js, Express, and EJS. Demonstrates authentication fundamentals from scratch using modular architecture.",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   },
-  "author": "Junaid",
-  "license": "ISC",
+  "homepage": "https://github.com/junaid-mohammad/BlackBox",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junaid-mohammad/BlackBox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/junaid-mohammad/BlackBox/issues"
+  },
+  "keywords": [
+    "Authentication",
+    "PostgreSQL",
+    "Express",
+    "EJS",
+    "Full Stack",
+    "Node.js",
+    "User Registration",
+    "Login System",
+    "Secrets App",
+    "BlackBox"
+  ],
+  "author": "Junaid Arif",
+  "contributors": [],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": ""
+  },
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "body-parser": "^1.20.1",
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "md5": "^2.3.0",
-    "mongoose": "^6.8.4",
-    "mongoose-encryption": "^2.1.2",
-    "mongoose-findorcreate": "^3.0.0",
-    "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^7.1.2"
-  }
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "license": "ISC"
 }
