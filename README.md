@@ -38,6 +38,13 @@ This branch (SQL version) currently covers:
    - Added `/logout` route to cleanly end the session and protect authenticated pages with `req.isAuthenticated()`.
    - This ensures users stay logged in across pages and provides a secure foundation for future social login integration.
 
+5. ✅ **Level 5: Environment Variables & Security**
+
+   - Learned the importance of using environment variables (`process.env`) for securely storing sensitive data like database credentials, API keys, and session secrets.
+   - Explored the `.env` file, `.gitignore` to prevent accidental commits, and the `dotenv` module to load these variables.
+   - Understood that environment variables offer both security (no hard-coded secrets) and convenience (no code changes needed to update secrets).
+   - No code changes were made for this level as environment variables were already set up properly.
+
 ---
 
 ## 🧱 Tech Stack
@@ -125,6 +132,7 @@ This SQL version of BlackBox rebuilds the authentication pipeline from the groun
 - [x] Document encryption and hashing basics (Level 2)
 - [x] Implement secure password hashing and salting with bcrypt (Level 3)
 - [x] Integrate session management (Level 4)
+- [x] Environment variable setup and security best practices (Level 5)
 - [ ] UI polish and theming
 - [ ] Deployment-ready configuration
 
