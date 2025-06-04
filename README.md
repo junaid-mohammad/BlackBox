@@ -10,15 +10,24 @@
 
 This branch (SQL version) currently covers:
 
-1. ✅ **Level 1: Register & Log In using Email & Password**  
-   Basic user registration and login forms, with data stored in PostgreSQL.  
-   Validates email and password, stores them directly (no hashing yet).
+1. ✅ **Level 1: Register & Log In using Email & Password**
+
+   - Basic user registration and login forms, with data stored in PostgreSQL.
+   - Validates email and password, stores them directly (no hashing yet).
 
 2. ✅ **Level 2: Encryption & Hashing Concepts**
+
    - Learned about encryption (Caesar Cipher, AES-256) and why encryption isn’t ideal for password storage (it requires a reversible key).
    - Explored symmetric vs. asymmetric encryption, encryption keys, and decryption.
    - Learned about hashing (MD5, SHA), how hash functions are one-way and irreversible, and the weaknesses of MD5 (rainbow tables, brute force).
    - No code implemented for this level — it’s a conceptual deep dive to inform future work.
+
+3. ✅ **Level 3: Hashing with bcrypt**
+
+   - Implemented password hashing with bcrypt and 10 rounds of salting.
+   - Used `bcrypt.hash` to securely hash user passwords before storing them in the database.
+   - Used `bcrypt.compare` to validate user passwords during login.
+   - This provides better security and protection against common dictionary and hash table attacks.
 
 ---
 
