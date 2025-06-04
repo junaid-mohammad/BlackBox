@@ -1,27 +1,43 @@
 // ------------------------------------------------------------------------
-// BlackBox (SQL Version) – Routes for Level 1: Register/Login
-// This file defines routes for rendering views and delegating logic
-// to the controller for registration and login.
+// BlackBox (SQL Version) – Routes for Level 4: Sessions and Cookies
+// Delegates GET/POST routes to the controller and passport auth.
 // ------------------------------------------------------------------------
 
 import express from "express";
+import passport from "passport";
 import {
   renderHome,
   renderLogin,
   renderRegister,
-  handleRegister,
-  handleLogin,
+  renderSecrets,
+  handleRegister
 } from "../controllers/secretController.js";
 
 const router = express.Router();
 
-// Static GET pages
+// Static Pages
 router.get("/", renderHome);
 router.get("/login", renderLogin);
 router.get("/register", renderRegister);
+router.get("/secrets", renderSecrets);
 
-// POST form handlers
+// Registration form POST
 router.post("/register", handleRegister);
-router.post("/login", handleLogin);
+
+// Login form POST using passport-local
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/secrets",
+  failureRedirect: "/login",
+}));
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error("Error during logout:", err);
+    }
+    res.redirect("/");
+  });
+});
 
 export default router;

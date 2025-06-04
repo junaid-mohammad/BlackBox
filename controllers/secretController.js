@@ -1,16 +1,20 @@
 // ------------------------------------------------------------------------
-// BlackBox (SQL Version) – Controller Logic for Level 3: Hashing with bcrypt
-// Handles form submissions for user registration and login
-// using PostgreSQL queries and bcrypt for secure password hashing.
+// BlackBox (SQL Version) – Level 4: Sessions and Cookies
+// Handles form submissions, page rendering, and passport-local strategy
+// for secure session-based authentication.
 // ------------------------------------------------------------------------
 
-import db from "../db/db.js";   // PostgreSQL client
-import bcrypt from "bcrypt";    // Import bcrypt for password hashing
+import { Strategy } from "passport-local";  // passport-local strategy for username/password auth
+import db from "../db/db.js";               // PostgreSQL client
+import bcrypt from "bcrypt";                // bcrypt for hashing passwords
+import passport from "passport";            // passport for session-based auth
 
-// Number of salt rounds for bcrypt hashing
+// Number of salt rounds for bcrypt
 const saltRounds = 10;
 
+// -----------------------------------------------------
 // Render Pages
+// -----------------------------------------------------
 export function renderHome(req, res) {
   res.render("home.ejs");
 }
@@ -23,7 +27,17 @@ export function renderRegister(req, res) {
   res.render("register.ejs");
 }
 
-// Handle Registration: now using bcrypt.hash to securely hash passwords
+export function renderSecrets(req, res) {
+  if (req.isAuthenticated()) {
+    res.render("secrets.ejs");
+  } else {
+    res.redirect("/login");
+  }
+}
+
+// -----------------------------------------------------
+// Handle Registration
+// -----------------------------------------------------
 export async function handleRegister(req, res) {
   const { username: email, password } = req.body;
 
@@ -33,15 +47,27 @@ export async function handleRegister(req, res) {
     if (checkResult.rows.length > 0) {
       res.send("Email already exists. Try logging in.");
     } else {
-      // bcrypt.hash is used here to hash the password with saltRounds
+      // Hash the password before storing
       bcrypt.hash(password, saltRounds, async (err, hash) => {
         if (err) {
           console.error("Error hashing password:", err);
           return res.status(500).send("Internal Server Error");
         }
-        // Store the hashed password in the database
-        await db.query("INSERT INTO users (email, password) VALUES ($1, $2)", [email, hash]);
-        res.render("secrets.ejs");
+        // Store the hashed password
+        const result = await db.query(
+          "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
+          [email, hash]
+        );
+        const user = result.rows[0];
+
+        // Auto-login the user after registration
+        req.login(user, (err) => {
+          if (err) {
+            console.error("Error during login after registration:", err);
+            return res.status(500).send("Internal Server Error");
+          }
+          res.redirect("/secrets");
+        });
       });
     }
   } catch (err) {
@@ -50,32 +76,32 @@ export async function handleRegister(req, res) {
   }
 }
 
-// Handle Login: now using bcrypt.compare to verify the password
-export async function handleLogin(req, res) {
-  const { username: email, password } = req.body;
+// -----------------------------------------------------
+// Configure Passport Local Strategy
+// -----------------------------------------------------
+passport.use(
+  new Strategy(async (username, password, cb) => {
+    try {
+      const result = await db.query("SELECT * FROM users WHERE email = $1", [username]);
 
-  try {
-    const result = await db.query("SELECT * FROM users WHERE email = $1", [email]);
-
-    if (result.rows.length > 0) {
-      const user = result.rows[0];
-      // bcrypt.compare checks the entered password against the hashed password
-      bcrypt.compare(password, user.password, (err, result) => {
-        if (err) {
-          console.error("Error comparing passwords:", err);
-          return res.status(500).send("Internal Server Error");
-        }
-        if (result) {
-          res.render("secrets.ejs");
-        } else {
-          res.send("Incorrect Password");
-        }
-      });
-    } else {
-      res.send("User not found");
+      if (result.rows.length > 0) {
+        const user = result.rows[0];
+        // Compare entered password with hashed password
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) {
+            return cb(err);
+          }
+          if (isMatch) {
+            return cb(null, user);
+          } else {
+            return cb(null, false);
+          }
+        });
+      } else {
+        return cb(null, false);
+      }
+    } catch (err) {
+      return cb(err);
     }
-  } catch (err) {
-    console.error("Error during login:", err);
-    res.status(500).send("Internal Server Error");
-  }
-}
+  })
+);

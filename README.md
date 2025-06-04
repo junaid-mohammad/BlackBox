@@ -22,12 +22,21 @@ This branch (SQL version) currently covers:
    - Learned about hashing (MD5, SHA), how hash functions are one-way and irreversible, and the weaknesses of MD5 (rainbow tables, brute force).
    - No code implemented for this level — it’s a conceptual deep dive to inform future work.
 
-3. ✅ **Level 3: Hashing with bcrypt**
+3. ✅ **Level 3: Hashing and Salting with bcrypt**
 
    - Implemented password hashing with bcrypt and 10 rounds of salting.
    - Used `bcrypt.hash` to securely hash user passwords before storing them in the database.
    - Used `bcrypt.compare` to validate user passwords during login.
    - This provides better security and protection against common dictionary and hash table attacks.
+
+4. ✅ **Level 4: Sessions and Cookies with Passport**
+
+   - Integrated `express-session` to manage user sessions with secure, encrypted cookies.
+   - Added Passport.js to handle session-based authentication and persistent login state.
+   - Configured Passport’s `LocalStrategy` to verify user credentials and securely compare hashed passwords.
+   - Used `passport.serializeUser` and `passport.deserializeUser` to save and retrieve user session data.
+   - Added `/logout` route to cleanly end the session and protect authenticated pages with `req.isAuthenticated()`.
+   - This ensures users stay logged in across pages and provides a secure foundation for future social login integration.
 
 ---
 
@@ -112,10 +121,10 @@ This SQL version of BlackBox rebuilds the authentication pipeline from the groun
 ## 📦 Roadmap
 
 - [x] Modularize controller and routes
-- [x] Add PostgreSQL support (Level 1 complete)
+- [x] Add PostgreSQL support (Level 1)
 - [x] Document encryption and hashing basics (Level 2)
-- [ ] Implement hashing in the next level (MD5, bcrypt)
-- [ ] Integrate session management
+- [x] Implement secure password hashing and salting with bcrypt (Level 3)
+- [x] Integrate session management (Level 4)
 - [ ] UI polish and theming
 - [ ] Deployment-ready configuration
 
