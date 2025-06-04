@@ -8,15 +8,17 @@
 
 ## 🔐 Authentication Levels
 
-This branch (SQL version) will implement the same auth journey as the original:
+This branch (SQL version) currently covers:
 
-1. ✅ **Level 1:** Register & Log In using Email & Password
-2. ⬜ Level 2: Password Encryption
-3. ⬜ Level 3: Hashing with MD5
-4. ⬜ Level 4: Hashing + Salting with bcrypt
-5. ⬜ Level 5: Cookies and Sessions
-6. ⬜ Level 6: Google OAuth 2.0
-7. ⬜ Level 7: Anonymous Secret Submission
+1. ✅ **Level 1: Register & Log In using Email & Password**  
+   Basic user registration and login forms, with data stored in PostgreSQL.  
+   Validates email and password, stores them directly (no hashing yet).
+
+2. ✅ **Level 2: Encryption & Hashing Concepts**
+   - Learned about encryption (Caesar Cipher, AES-256) and why encryption isn’t ideal for password storage (it requires a reversible key).
+   - Explored symmetric vs. asymmetric encryption, encryption keys, and decryption.
+   - Learned about hashing (MD5, SHA), how hash functions are one-way and irreversible, and the weaknesses of MD5 (rainbow tables, brute force).
+   - No code implemented for this level — it’s a conceptual deep dive to inform future work.
 
 ---
 
@@ -102,9 +104,9 @@ This SQL version of BlackBox rebuilds the authentication pipeline from the groun
 
 - [x] Modularize controller and routes
 - [x] Add PostgreSQL support (Level 1 complete)
-- [ ] Implement encryption and hashing
+- [x] Document encryption and hashing basics (Level 2)
+- [ ] Implement hashing in the next level (MD5, bcrypt)
 - [ ] Integrate session management
-- [ ] Add Google OAuth 2.0 support
 - [ ] UI polish and theming
 - [ ] Deployment-ready configuration
 
