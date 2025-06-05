@@ -1,6 +1,6 @@
 // ------------------------------------------------------------------------
-// BlackBox (SQL Version) – Routes for Level 4: Sessions and Cookies
-// Delegates GET/POST routes to the controller and passport auth.
+// BlackBox (SQL Version) – Level 6: Google OAuth 2.0
+// All route handling, including Google OAuth endpoints.
 // ------------------------------------------------------------------------
 
 import express from "express";
@@ -15,17 +15,28 @@ import {
 
 const router = express.Router();
 
-// Static Pages
+// Static pages
 router.get("/", renderHome);
 router.get("/login", renderLogin);
 router.get("/register", renderRegister);
 router.get("/secrets", renderSecrets);
 
-// Registration form POST
+// Registration POST
 router.post("/register", handleRegister);
 
-// Login form POST using passport-local
+// Local login POST
 router.post("/login", passport.authenticate("local", {
+  successRedirect: "/secrets",
+  failureRedirect: "/login",
+}));
+
+// Google OAuth login
+router.get("/auth/google", passport.authenticate("google", {
+  scope: ["profile", "email"],
+}));
+
+// Google OAuth callback
+router.get("/auth/google/secrets", passport.authenticate("google", {
   successRedirect: "/secrets",
   failureRedirect: "/login",
 }));

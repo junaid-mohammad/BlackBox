@@ -1,6 +1,6 @@
 // ------------------------------------------------------------------------
-// BlackBox (SQL Version) – Level 4: Sessions and Cookies
-// Initializes the Express app, sets up Passport for session-based auth,
+// BlackBox (SQL Version) – Level 6: Google OAuth 2.0
+// Main app entry point. Initializes Express, sessions, Passport,
 // and delegates routes to secretRoutes.js.
 // ------------------------------------------------------------------------
 
@@ -12,7 +12,8 @@ import { fileURLToPath } from "url";
 import session from "express-session";
 import passport from "passport";
 import secretRoutes from "./routes/secretRoutes.js";
-import "./db/db.js"; // PostgreSQL connection init
+import "./db/db.js";      // PostgreSQL connection init
+import "./config/passport.js"; // Passport strategies
 
 dotenv.config();
 const app = express();
@@ -36,7 +37,7 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
   })
 );
@@ -51,17 +52,6 @@ app.use(passport.session());
 // Routes
 // -----------------------------------------------------
 app.use("/", secretRoutes);
-
-// -----------------------------------------------------
-// Passport Serialization and Deserialization
-// -----------------------------------------------------
-passport.serializeUser((user, cb) => {
-  cb(null, user);
-});
-
-passport.deserializeUser((user, cb) => {
-  cb(null, user);
-});
 
 // -----------------------------------------------------
 // Start Server

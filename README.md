@@ -45,6 +45,14 @@ This branch (SQL version) currently covers:
    - Understood that environment variables offer both security (no hard-coded secrets) and convenience (no code changes needed to update secrets).
    - No code changes were made for this level as environment variables were already set up properly.
 
+6. ✅ **Level 6: Google OAuth 2.0 Authentication**
+
+   - Integrated Google OAuth 2.0 login using the `passport-google-oauth2` strategy.
+   - Added `/auth/google` and `/auth/google/secrets` routes to handle login and callback flows.
+   - Configured Passport to create new users if they log in with Google for the first time, or find existing users by email.
+   - Ensured Google profile data is stored securely in the database, alongside local credentials.
+   - Provided a seamless login experience with Google, extending the existing session-based authentication.
+
 ---
 
 ## 🧱 Tech Stack
@@ -105,6 +113,8 @@ This branch (SQL version) currently covers:
 
 ```bash
 📦 BlackBox/
+├── config/
+│   └── passport.js            # All Passport strategies and session config
 ├── controllers/
 │   └── secretController.js    # Controller logic for register/login
 ├── routes/
@@ -133,6 +143,7 @@ This SQL version of BlackBox rebuilds the authentication pipeline from the groun
 - [x] Implement secure password hashing and salting with bcrypt (Level 3)
 - [x] Integrate session management (Level 4)
 - [x] Environment variable setup and security best practices (Level 5)
+- [x] Integrate Google OAuth 2.0 login (Level 6)
 - [ ] UI polish and theming
 - [ ] Deployment-ready configuration
 
