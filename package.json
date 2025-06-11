@@ -8,7 +8,7 @@
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
   },
-  "homepage": "https://github.com/junaid-mohammad/BlackBox",
+  "homepage": "https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/",
   "repository": {
     "type": "git",
     "url": "https://github.com/junaid-mohammad/BlackBox.git"
@@ -33,7 +33,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": ""
+    "test": "echo \"No tests yet!\" && exit 0"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

@@ -53,6 +53,13 @@ This branch (SQL version) currently covers:
    - Ensured Google profile data is stored securely in the database, alongside local credentials.
    - Provided a seamless login experience with Google, extending the existing session-based authentication.
 
+7. ✅ **Level 7: Anonymous Secret Submission**
+
+   - Created a separate `secrets` table to allow users to submit multiple secrets anonymously.
+   - Updated the secret submission logic to insert new rows into this table, linked to each user's ID.
+   - Modified the secrets page to display **all secrets submitted by the logged-in user**.
+   - Ensured the app's modular structure and session-based security remain intact with the new secret handling.
+
 ---
 
 ## 🧱 Tech Stack
@@ -85,14 +92,18 @@ This branch (SQL version) currently covers:
    npm install
    ```
 
-4. Set up your `.env` file:
+4. Set up your `.env` file with your local or Azure Postgres Flexible Server credentials:
 
    ```env
    DB_USER=your_db_username
-   DB_HOST=localhost
+   DB_HOST=your_db_host
    DB_NAME=your_db_name
    DB_PASSWORD=your_db_password
    DB_PORT=5432
+   SESSION_SECRET=your_random_session_secret
+   CLIENT_ID=your_google_client_id
+   CLIENT_SECRET=your_google_client_secret
+   NODE_ENV=production   # For Azure deployment, ensures SSL is used
    ```
 
 5. Start the server:
@@ -116,7 +127,7 @@ This branch (SQL version) currently covers:
 ├── config/
 │   └── passport.js            # All Passport strategies and session config
 ├── controllers/
-│   └── secretController.js    # Controller logic for register/login
+│   └── secretController.js    # Controller logic for user auth and secrets
 ├── routes/
 │   └── secretRoutes.js        # Routes delegated to controller
 ├── db/
@@ -124,14 +135,16 @@ This branch (SQL version) currently covers:
 ├── views/                     # EJS templates
 ├── public/                    # Static assets (CSS, images)
 ├── index.js                   # Main Express entry point
-└── .env                       # Environment variables
+├── .env                       # Environment variables (in Azure's config)
+├── package.json               # Project config & scripts
+└── README.md                  # Project documentation
 ```
 
 ---
 
 ## 🧪 Educational Purpose
 
-This SQL version of BlackBox rebuilds the authentication pipeline from the ground up using relational databases. It's a teaching tool and dev playground for testing modular auth techniques without heavy frameworks.
+This SQL version of BlackBox rebuilds the authentication pipeline from the ground up using relational databases. It’s a teaching tool, a dev playground, and now fully deployable to cloud platforms like Azure.
 
 ---
 
@@ -144,6 +157,7 @@ This SQL version of BlackBox rebuilds the authentication pipeline from the groun
 - [x] Integrate session management (Level 4)
 - [x] Environment variable setup and security best practices (Level 5)
 - [x] Integrate Google OAuth 2.0 login (Level 6)
+- [x] Implement anonymous secret submission with relational DB support (Level 7)
 - [ ] UI polish and theming
 - [ ] Deployment-ready configuration
 
