@@ -2,13 +2,13 @@
 
 > _What goes in, stays in._
 
-[![Deployed via GitHub Actions](https://img.shields.io/badge/Deployed%20via-GitHub%20Actions-blue?logo=github)](https://github.com/junaid-mohammad/BlackBox)
-[![Azure App Service](https://img.shields.io/badge/Hosted%20on-Azure%20App%20Service-brightgreen)](https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/)
+[![Deployed via GitHub Actions](https://img.shields.io/badge/Deployed%20via-GitHub%20Actions-blue?logo=github)](https://github.com/junaid-mohammad/BlackBox)  
+[![Azure App Service](https://img.shields.io/badge/Hosted%20on-Azure%20App%20Service-brightgreen)](https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/)  
 [![Azure DevOps](https://img.shields.io/badge/Tracked%20in-Azure%20DevOps-blue)](https://dev.azure.com/Junaid-Arif/BlackBox)
 
 **BlackBox (SQL Version)** is a full-stack authentication playground built to showcase modern authentication flows and security practices using **Node.js**, **Express**, and **PostgreSQL**.
 Originally a MongoDB project, it has been fully re-architected to use relational data storage with **Azure PostgreSQL Flexible Server** and **Azure App Service** for deployment.
-The app walks through seven levels of authentication challenges, from basic username/password logins to OAuth 2.0 integration and user-generated secret submissions. Each level reinforces concepts like hashing, salting, session security, and modular architecture — making it a robust playground for both learning and demonstrating secure authentication patterns.
+The app walks through seven levels of authentication challenges, from basic username/password logins to **OAuth 2.0** integration and user-generated secret submissions. Each level reinforces concepts like hashing, salting, session security, and modular architecture — making it a robust playground for both learning and demonstrating secure authentication patterns.
 
 ---
 
@@ -38,7 +38,7 @@ The journey from a MongoDB-based sandbox to a fully-fledged PostgreSQL-powered a
 
 ## 🔐 Authentication Levels
 
-This SQL branch of **BlackBox** tackles authentication step by step:
+This SQL version of **BlackBox** tackles authentication step by step:
 
 1. ✅ **Level 1: Register & Log In using Email & Password**
 
@@ -133,7 +133,7 @@ Here’s what stood out:
 
 The app is deployed on **Azure App Service** with a **PostgreSQL Flexible Server** for persistent data storage. Local development uses a `.env` file to store environment-specific credentials, while **Azure App Settings** handle production secrets securely.
 
-Automated deployments are powered by **GitHub Actions**. Pushing to the `sql-version` branch triggers workflows that build and deploy the app directly to Azure, ensuring smooth CI/CD pipelines.
+Automated deployments are powered by **GitHub Actions**. Pushing to the `main` branch triggers workflows that build and deploy the app directly to Azure, ensuring smooth CI/CD pipelines.
 
 For detailed instructions on setting up the Azure PostgreSQL Flexible Server (firewall, SSL, psql commands), see the [**Deployment Section in Capitalism**](https://github.com/junaid-mohammad/Capitalism#-deployment--workflow).
 
@@ -150,19 +150,13 @@ To **run BlackBox locally** or replicate this setup:
    cd BlackBox
    ```
 
-2. **Switch to the SQL branch:**
-
-   ```bash
-   git checkout sql-version
-   ```
-
-3. **Install dependencies:**
+2. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-4. **Set up your `.env` file** (for local or Azure Postgres Flexible Server):
+3. **Set up your `.env` file** (for local or Azure Postgres Flexible Server):
 
    ```env
    DB_USER=your_db_username
@@ -176,7 +170,7 @@ To **run BlackBox locally** or replicate this setup:
    CALLBACK_URL=your_google_client_callback_url
    ```
 
-5. **Create the PostgreSQL database tables:**
+4. **Create the PostgreSQL database tables:**
 
    ```sql
    -- users table
@@ -194,13 +188,13 @@ To **run BlackBox locally** or replicate this setup:
    );
    ```
 
-6. **Start the server locally:**
+5. **Start the server locally:**
 
    ```bash
    npm run dev
    ```
 
-7. **Visit in browser:**
+6. **Visit in browser:**
 
    ```
    http://localhost:3000
