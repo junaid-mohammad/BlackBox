@@ -132,3 +132,4 @@ dist
 
 # SQL files
 *.sql
+/sql
