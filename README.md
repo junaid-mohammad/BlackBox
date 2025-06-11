@@ -2,8 +2,8 @@
 
 > _What goes in, stays in._
 
-[![Deployed via GitHub Actions](https://img.shields.io/badge/Deployed%20via-GitHub%20Actions-blue?logo=github)](https://github.com/junaid-mohammad/BlackBox)  
-[![Azure App Service](https://img.shields.io/badge/Hosted%20on-Azure%20App%20Service-brightgreen)](https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/)  
+[![Deployed via GitHub Actions](https://img.shields.io/badge/Deployed%20via-GitHub%20Actions-blue?logo=github)](https://github.com/junaid-mohammad/BlackBox)
+[![Azure App Service](https://img.shields.io/badge/Hosted%20on-Azure%20App%20Service-brightgreen)](https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/)
 [![Azure DevOps](https://img.shields.io/badge/Tracked%20in-Azure%20DevOps-blue)](https://dev.azure.com/Junaid-Arif/BlackBox)
 
 **BlackBox (SQL Version)** is a full-stack authentication playground built to showcase modern authentication flows and security practices using **Node.js**, **Express**, and **PostgreSQL**.
@@ -14,8 +14,8 @@ The app walks through seven levels of authentication challenges, from basic user
 
 ## 🗺️ Live Application
 
-👉 **[BlackBox App](https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/)**
-👉 **[GitHub Repository](https://github.com/junaid-mohammad/BlackBox)**
+👉 **[BlackBox App](https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/)**  
+👉 **[GitHub Repository](https://github.com/junaid-mohammad/BlackBox)**  
 👉 **[Azure DevOps Project](https://dev.azure.com/Junaid-Arif/BlackBox)**
 
 ---
