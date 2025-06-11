@@ -44,7 +44,7 @@ passport.use(
   new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL || "http://localhost:3000/auth/google/secrets",
+    callbackURL: process.env.CALLBACK_URL || "https://blackbox-d6g2c2dycya8fgbs.canadacentral-01.azurewebsites.net/auth/google/secrets",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   }, async (accessToken, refreshToken, profile, cb) => {
     try {
